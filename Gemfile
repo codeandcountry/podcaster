@@ -7,6 +7,9 @@ gem 'rails', '4.2.0'
 gem 'mysql2'
 
 gem 'dotenv-rails'
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise', '~> 3.2'
+#gem "meta_search", '>= 1.1.0.pre'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
