@@ -1,0 +1,31 @@
+default: &default
+
+  adapter: <%= ENV['DB_ADAPTER'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  username: <%= ENV['DB_USER'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
+  pool: <%= ENV['DB_POOL'] || 5 %>
+  timeout: <%= ENV['DB_TIMEOUT'] || 1500 %>
+
+
+development:
+  <<: *default
+
+test:
+  <<: *default
+
+test_one:
+  <<: *default
+
+qa:
+  <<: *default
+
+staging:
+  <<: *default
+
+production:
+  <<: *default
+
+build:
+  <<: *default
