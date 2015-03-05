@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305171122) do
+ActiveRecord::Schema.define(version: 20150305194809) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150305171122) do
     t.string   "image_link",      limit: 255
     t.boolean  "is_explicit",     limit: 1
     t.string   "categories",      limit: 255
+    t.boolean  "uses_podtrac",    limit: 1
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree
