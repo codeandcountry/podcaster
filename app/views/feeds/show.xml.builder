@@ -39,11 +39,9 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
     xml.itunes :explicit, @feed.is_explicit
 
     #todo
-    xml.itunes :category, :text=>"Business"
-    xml.itunes :category, :text=>"Investing"
-    xml.itunes :category, :text=>"Kids & Family"
-    xml.itunes :category, :text=>"Health"
-    xml.itunes :category, :text=>"Self-Help"
+    @feed.categories.split(/, ?/).each do |category|
+      xml.itunes :category, :text=>category
+    end
 
     #items!
     @episodes.each do |episode|
@@ -57,32 +55,15 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
         xml.link episode.link
         xml.guid episode.guid, :isPermaLink=>"false"
 
-        #todo
-        xml.category "Educational"
-        xml.category "Dave Ramsey"
-        xml.category "Money"
-        xml.category "Financial"
-        xml.category "Life"
+        episode.categories.split(/, ?/).each do |category|
+          xml.category category
+        end
 
         xml.pubDate episode.published
 
-        #todo
-        xml.itunes :keywords, "Dave, Ramsey, Financial, Peace, radio, debt, bankruptcy, budget, counseling, money, retirement, saving"
+        xml.itunes :keywords, episode.keywords
       end
     end
 
   end
 end
-
-
-
-#xml.episodes do
-#      @episodes.each do |episode|
-#        xml.episode do
-#          xml.title episode.title
-#          xml.subtitle episode.subtitle
-#          xml.url episode.url
-#        end
-#      end
-#    end
-
