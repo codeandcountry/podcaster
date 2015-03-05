@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304222634) do
+ActiveRecord::Schema.define(version: 20150305160356) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -65,11 +65,33 @@ ActiveRecord::Schema.define(version: 20150304222634) do
   add_index "episodes", ["feed_id"], name: "index_episodes_on_feed_id", using: :btree
 
   create_table "feeds", force: :cascade do |t|
-    t.string   "name",        limit: 255
-    t.text     "description", limit: 65535
-    t.string   "slug",        limit: 255
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.string   "title",           limit: 255
+    t.text     "description",     limit: 65535
+    t.string   "slug",            limit: 255
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "atom_link",       limit: 255
+    t.string   "link",            limit: 255
+    t.string   "subtitle",        limit: 255
+    t.string   "summary",         limit: 255
+    t.string   "language",        limit: 255
+    t.string   "copyright",       limit: 255
+    t.string   "owner_name",      limit: 255
+    t.string   "owner_email",     limit: 255
+    t.datetime "last_build_date"
+    t.datetime "published_date"
+    t.string   "ttl",             limit: 255
+    t.string   "skip_days",       limit: 255
+    t.string   "generator",       limit: 255
+    t.string   "docs",            limit: 255
+    t.string   "author",          limit: 255
+    t.string   "image_url",       limit: 255
+    t.string   "image_title",     limit: 255
+    t.string   "image_width",     limit: 255
+    t.string   "image_height",    limit: 255
+    t.string   "image_link",      limit: 255
+    t.boolean  "is_explicit",     limit: 1
+    t.string   "categories",      limit: 255
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree

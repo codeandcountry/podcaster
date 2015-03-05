@@ -1,8 +1,12 @@
 Rails.application.routes.draw do
+  get 'feeds/show'
+
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root to: "home#index"
+  root to: "feeds#show"
+
+  get '/feeds/:slug', to: 'feeds#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
