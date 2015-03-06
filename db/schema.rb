@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305194809) do
+ActiveRecord::Schema.define(version: 20150305221407) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -47,20 +47,24 @@ ActiveRecord::Schema.define(version: 20150305194809) do
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "episodes", force: :cascade do |t|
-    t.string   "title",      limit: 255
-    t.string   "subtitle",   limit: 255
-    t.text     "summary",    limit: 65535
-    t.string   "url",        limit: 255
-    t.string   "length",     limit: 255
-    t.string   "author",     limit: 255
-    t.string   "link",       limit: 255
-    t.string   "guid",       limit: 255
+    t.string   "title",            limit: 255
+    t.string   "subtitle",         limit: 255
+    t.text     "summary",          limit: 65535
+    t.string   "url",              limit: 255
+    t.string   "length",           limit: 255
+    t.string   "author",           limit: 255
+    t.string   "link",             limit: 255
+    t.string   "guid",             limit: 255
     t.datetime "published"
-    t.string   "keywords",   limit: 255
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-    t.integer  "feed_id",    limit: 4
-    t.string   "categories", limit: 255
+    t.string   "keywords",         limit: 255
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.integer  "feed_id",          limit: 4
+    t.string   "categories",       limit: 255
+    t.string   "mp3_file_name",    limit: 255
+    t.string   "mp3_content_type", limit: 255
+    t.integer  "mp3_file_size",    limit: 4
+    t.datetime "mp3_updated_at"
   end
 
   add_index "episodes", ["feed_id"], name: "index_episodes_on_feed_id", using: :btree
