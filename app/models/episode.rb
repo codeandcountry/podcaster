@@ -8,7 +8,7 @@ class Episode < ActiveRecord::Base
 
     # The full URL of where the attachment is publicly accessible.
     # This supports Paperclip::Interpolations.
-    :url => "/:filename",
+    :url => "http://www.codeandcountry.com/uploadtest/:filename",
 
     # The list of FTP servers to use
     :ftp_servers => [
@@ -17,20 +17,7 @@ class Episode < ActiveRecord::Base
         :user     => "test@flashharris.com",
         :password => "uploadtest"
       }
-    ],
-
-    # Optional socket connect timeout (in seconds).
-    # This only limits the connection phase, once connected
-    # this option is of no more use.
-    :ftp_connect_timeout => 5, # optional, nil by default (OS default timeout)
-
-    # Optional flag to skip dead servers.
-    # If set to true and the connection to a particular server cannot be
-    # established, the connection error will be ignored and the files will
-    # not be uploaded to that server.
-    # If set to false and the connection to a particular server cannot be established,
-    # a SystemCallError will be raised (Errno::ETIMEDOUT, Errno::ENETUNREACH, etc.).
-    :ftp_ignore_failing_connections => true # optional, false by default
+    ]
   }
 
   validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", "image/png"] } 
