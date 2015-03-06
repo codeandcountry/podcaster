@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305221407) do
+ActiveRecord::Schema.define(version: 20150306040456) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -98,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150305221407) do
     t.boolean  "is_explicit",     limit: 1
     t.string   "categories",      limit: 255
     t.boolean  "uses_podtrac",    limit: 1
+    t.string   "ftp_folder_path", limit: 255
+    t.string   "ftp_folder_url",  limit: 255
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree
