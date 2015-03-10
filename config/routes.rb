@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   root to: "feeds#show"
 
   get '/feeds/:slug', to: 'feeds#show'
+  get '/feeds/meta/:id', to: 'feeds#meta'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
