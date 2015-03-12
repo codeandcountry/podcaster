@@ -14,6 +14,7 @@ gem 'devise', '~> 3.2'
 #Use for file uploads
 gem "paperclip", "~> 4.2"
 gem "paperclip-storage-ftp"
+gem "ruby-mp3info"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -15,25 +15,29 @@ ActiveAdmin.register Episode do
       f.input :feed
     end
 
-    f.inputs "Details" do
-      f.input :title
-      f.input :subtitle
-      f.input :summary 
-      f.input :published
-      f.input :guid
-    end
-
-    f.inputs "Metadata" do
-      f.input :author 
-      f.input :link
-      f.input :keywords
-      f.input :categories
-    end
-
     f.inputs "File" do
-      f.input :length
       f.input :mp3, :as => :file
     end
+
+    #binding.pry
+    if f.object.mp3_file_name
+      f.inputs "Details" do
+        f.input :title
+        f.input :subtitle
+        f.input :summary 
+        f.input :published
+        f.input :guid
+        f.input :length
+      end
+
+      f.inputs "Metadata" do
+        f.input :author 
+        f.input :link
+        f.input :keywords
+        f.input :categories
+      end
+    end
+
     f.actions
   end
 end
