@@ -2,6 +2,7 @@ require "mp3info"
 
 class Episode < ActiveRecord::Base
   belongs_to :feed
+  just_define_datetime_picker :published
 
   has_attached_file :mp3, {
     # Choose the FTP storage backend
@@ -20,22 +21,21 @@ class Episode < ActiveRecord::Base
     ]
   }
 
-  validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", 'audio/mp3', 'application/x-mp3', "image/png"] } 
+  validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", 'audio/mp3', 'application/x-mp3'] } 
   after_post_process :read_id3
 
   def url
-    if feed.uses_podtrac
-      "http://www.podtrac.com/pts/redirect.mp3/"+file_url
-    else
-      file_url
-    end
-  end
-
-  def file_url
-    if mp3
-      "#{feed.ftp_folder_url}#{mp3.path}"
-    else
-      read_attribute(url)
+    if feed
+      if feed.uses_podtrac
+        "http://www.podtrac.com/pts/redirect.mp3/"+file_url
+      else
+        furl = file_url
+        if furl[/\Ahttp:\/\//] || furl[/\Ahttps:\/\//]
+          furl
+        else
+          "http://#{furl}"
+        end
+      end
     end
   end
 
@@ -55,21 +55,25 @@ class Episode < ActiveRecord::Base
     end
   end
 
+
   protected
     def read_id3
       Mp3Info.open(mp3.queued_for_write[:original].path) do |mp3info|
-        if id
-          puts "id exists, update details"
-          Episode.update(id, :title => mp3info.tag2.TIT2, :author => mp3info.tag2.TPE1, :length => mp3info.tag2.TLEN, :summary => mp3info.tag2.COMM)
-        end
-        puts "update details in memory"
-        self.title = mp3info.tag2.TIT2
-        self.author = mp3info.tag2.TPE1
-        self.length = mp3info.tag2.TLEN
-        self.summary = mp3info.tag2.COMM
 
-        #image = mp3info.tag2.APIC ftp?
-        #binding.pry
+        self.title = self.title || mp3info.tag2.TIT2
+        self.author = self.author || mp3info.tag2.TPE1
+        self.length = self.length || mp3info.tag2.TLEN
+        self.summary = self.summary || mp3info.tag2.COMM
+
+        #TODO image = mp3info.tag2.APIC ftp?
+      end
+    end
+
+    def file_url
+      if mp3
+        "#{feed.ftp_folder_url}#{mp3.path}"
+      else
+        read_attribute(url)
       end
     end
 

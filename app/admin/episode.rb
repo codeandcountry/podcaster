@@ -1,6 +1,6 @@
 ActiveAdmin.register Episode do
 
-  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :guid, :published, :keywords, :feed_id, :categories, :mp3
+  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :guid, :published, :published_date, :published_time_hour, :published_time_minute, :keywords, :feed_id, :categories, :mp3
 
   index do
     id_column
@@ -16,7 +16,7 @@ ActiveAdmin.register Episode do
     end
 
     f.inputs "File" do
-      f.input :mp3, :as => :file
+      f.input :mp3, :as => :file, :hint => audio_tag(f.object.url, autoplay: false, controls: true)
     end
 
     #binding.pry
@@ -25,7 +25,7 @@ ActiveAdmin.register Episode do
         f.input :title
         f.input :subtitle
         f.input :summary 
-        f.input :published
+        f.input :published, :as => :just_datetime_picker
         f.input :guid
         f.input :length
       end
