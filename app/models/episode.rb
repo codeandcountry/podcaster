@@ -17,7 +17,8 @@ class Episode < ActiveRecord::Base
       {
         :host     => ENV['FTP_HOST'],
         :user     => ENV['FTP_USER'],
-        :password => ENV['FTP_PASSWORD']
+        :password => ENV['FTP_PASSWORD'],
+        :passive  => true
       }
     ]
   }
