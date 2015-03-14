@@ -160,6 +160,7 @@ GEM
       mime-types
     paperclip-storage-ftp (1.2.3)
       paperclip
+    pg (0.18.1)
     polyamorous (1.1.0)
       activerecord (>= 3.0)
     pry (0.10.1)
@@ -283,13 +284,10 @@ DEPENDENCIES
   jquery-rails
   just-datetime-picker
   mysql2
-<<<<<<< HEAD
   paperclip (~> 4.2)
   paperclip-storage-ftp
-  pry
-=======
   pg
->>>>>>> master
+  pry
   rails (= 4.2.0)
   rails_12factor
   rspec-rails (~> 3.0.0)
