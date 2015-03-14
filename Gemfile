@@ -13,6 +13,13 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise', '~> 3.2'
 #gem "meta_search", '>= 1.1.0.pre'
 
+#Use for file uploads
+gem "paperclip", "~> 4.2"
+gem "paperclip-storage-ftp"
+gem "ruby-mp3info"
+
+gem "just-datetime-picker"
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -54,5 +61,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'database_cleaner'
+
+  gem 'pry'
 end
 
