@@ -1,6 +1,7 @@
 require "mp3info"
 
 class Episode < ActiveRecord::Base
+  include ActionView::Helpers::AssetTagHelper
   belongs_to :feed
   just_define_datetime_picker :published
 
@@ -55,6 +56,13 @@ class Episode < ActiveRecord::Base
     end
   end
 
+  def audio_player
+    if mp3_file_name
+      audio_tag(url, autoplay: false, controls: true)
+    end
+  end
+
+
 
   protected
     def read_id3
@@ -70,7 +78,7 @@ class Episode < ActiveRecord::Base
     end
 
     def file_url
-      if mp3
+      if mp3_file_name
         "#{feed.ftp_folder_url}#{mp3.path}"
       else
         read_attribute(url)

@@ -16,7 +16,7 @@ ActiveAdmin.register Episode do
     end
 
     f.inputs "File" do
-      f.input :mp3, :as => :file, :hint => audio_tag(f.object.url, autoplay: false, controls: true)
+      f.input :mp3, :as => :file, :hint => f.object.audio_player
     end
 
     #binding.pry
