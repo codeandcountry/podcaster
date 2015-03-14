@@ -26,7 +26,6 @@ class Episode < ActiveRecord::Base
   after_post_process :read_id3
 
   def url
-<<<<<<< HEAD
     if feed
       if feed.uses_podtrac
         "http://www.podtrac.com/pts/redirect.mp3/"+file_url
@@ -52,10 +51,6 @@ class Episode < ActiveRecord::Base
   def ftp_url
     if feed 
       feed.ftp_folder_url+"/:filename"
-=======
-    if feed && feed.uses_podtrac
-      "http://www.podtrac.com/pts/redirect.mp3/#{read_attribute(:url)}"
->>>>>>> master
     else
       ENV['FTP_DEFAULT_URL']+"/:filename"
     end
