@@ -35,6 +35,9 @@ ActiveAdmin.register Episode do
         f.input :link
         f.input :keywords
         f.input :categories
+        f.input :image
+        f.input :order
+        f.input :comments_url
       end
     end
 
