@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306040456) do
+ActiveRecord::Schema.define(version: 20150315021308) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -65,6 +65,9 @@ ActiveRecord::Schema.define(version: 20150306040456) do
     t.string   "mp3_content_type", limit: 255
     t.integer  "mp3_file_size",    limit: 4
     t.datetime "mp3_updated_at"
+    t.string   "image",            limit: 255
+    t.string   "order",            limit: 255
+    t.string   "comments_url",     limit: 255
   end
 
   add_index "episodes", ["feed_id"], name: "index_episodes_on_feed_id", using: :btree
@@ -100,6 +103,8 @@ ActiveRecord::Schema.define(version: 20150306040456) do
     t.boolean  "uses_podtrac",    limit: 1
     t.string   "ftp_folder_path", limit: 255
     t.string   "ftp_folder_url",  limit: 255
+    t.string   "managing_editor", limit: 255
+    t.string   "web_master",      limit: 255
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree

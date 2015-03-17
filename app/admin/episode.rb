@@ -1,6 +1,6 @@
 ActiveAdmin.register Episode do
 
-  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :guid, :published, :published_date, :published_time_hour, :published_time_minute, :keywords, :feed_id, :categories, :mp3
+  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :guid, :published, :published_date, :published_time_hour, :published_time_minute, :keywords, :feed_id, :categories, :mp3, :image, :order, :comments_url
 
   index do
     id_column
@@ -35,6 +35,9 @@ ActiveAdmin.register Episode do
         f.input :link
         f.input :keywords
         f.input :categories
+        f.input :image
+        f.input :order
+        f.input :comments_url
       end
     end
 
