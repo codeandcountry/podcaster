@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150315021308) do
+ActiveRecord::Schema.define(version: 20150318023836) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20150315021308) do
     t.string   "atom_link",       limit: 255
     t.string   "link",            limit: 255
     t.string   "subtitle",        limit: 255
-    t.string   "summary",         limit: 255
+    t.text     "summary",         limit: 65535
     t.string   "language",        limit: 255
     t.string   "copyright",       limit: 255
     t.string   "owner_name",      limit: 255
