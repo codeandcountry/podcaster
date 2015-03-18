@@ -4,10 +4,15 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
   xml.channel do
     xml.atom :link, :href=>@feed.atom_link, :rel=>"self", :type=>"application/rss+xml"
     xml.title @feed.title
-    xml.link @feed.link
-    xml.description @feed.description
     xml.itunes :subtitle, @feed.subtitle
-    xml.itunes :summary, @feed.summary
+    xml.link @feed.link
+
+    xml.description do
+      xml.cdata! @feed.description
+    end
+    xml.itunes :summary do 
+      xml.cdata! @feed.summary
+    end
 
     xml.language @feed.language
     xml.copyright @feed.copyright
@@ -52,7 +57,9 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
       xml.item do
         xml.title episode.title
         xml.itunes :subtitle, episode.subtitle
-        xml.itunes :summary, episode.summary
+        xml.itunes :summary do
+          xml.cdata! episode.summary
+        end
         xml.enclosure :length=>episode.length, :type=>"audio/mpeg", :url=>episode.url
 
         xml.itunes :image, episode.image
