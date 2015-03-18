@@ -75,6 +75,13 @@ class Episode < ActiveRecord::Base
         self.summary = self.summary || mp3info.tag2.COMM
 
         #TODO image = mp3info.tag2.APIC ftp?
+
+        if feed_id
+          feed = Feed.find(feed_id)
+          self.author = self.author || feed.author
+          self.image = self.image || feed.image_url
+          self.summary = self.summary || feed.summary
+        end
       end
     end
 
