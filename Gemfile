@@ -11,6 +11,7 @@ gem 'pg'
 gem 'dotenv-rails'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise', '~> 3.2'
+gem 'cancancan', '~> 1.10'
 #gem "meta_search", '>= 1.1.0.pre'
 
 #Use for file uploads

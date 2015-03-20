@@ -1,5 +1,5 @@
 ActiveAdmin.register AdminUser do
-  permit_params :email, :password, :password_confirmation
+  permit_params :email, :password, :password_confirmation, :role
 
   index do
     selectable_column
@@ -21,6 +21,9 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
+      if can? :assign_roles, AdminUser.new
+        f.input :role, as: :select, :collection => ["Super", "Admin", "Publisher"]
+      end
     end
     f.actions
   end
