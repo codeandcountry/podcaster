@@ -5,15 +5,16 @@ class Ability
     can :read, Feed
     can :manage, Episode
     can :read, ActiveAdmin::Page, :name => "Dashboard"
+    can :manage, AdminUser, :id => user.id
 
     if user.role == "Admin"
-      can :manage, Feed
-      can :manage, AdminUser, :id => user.id
+      can :edit, Feed
     end
 
     if user.role == "Super"
       can :manage, Feed
       can :manage, AdminUser
+      can :change_role, AdminUser
     end
   end
 

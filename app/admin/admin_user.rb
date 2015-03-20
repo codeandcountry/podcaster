@@ -21,7 +21,9 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :role, as: :select, :collection => ["Super", "Admin", "Publisher"]
+      if can? :assign_roles, AdminUser.new
+        f.input :role, as: :select, :collection => ["Super", "Admin", "Publisher"]
+      end
     end
     f.actions
   end
