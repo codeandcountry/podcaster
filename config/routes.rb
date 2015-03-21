@@ -1,10 +1,8 @@
 Rails.application.routes.draw do
-  get 'feeds/show'
-
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 
-  root to: "feeds#show"
+  root to: "static_pages#home"
 
   get '/feeds/:slug', to: 'feeds#show', as: 'feed'
   # The priority is based upon order of creation: first created -> highest priority.
