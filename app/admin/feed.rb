@@ -26,7 +26,7 @@ ActiveAdmin.register Feed do
 
       f.input :author 
       f.input :category, as: :select, :collection => ["Arts", "Business", "Comedy", "Education", "Games & Hobbies", "Government & Organizations", "Health", "Kids & Family", "Music", "News & Politics", "Religion & Spirituality", "Science & Medicine", "Society & Culture", "Sports & Recreation", "Technology", "TV & Film"]
-      f.input :subcategory, as: :select, :collection => ["None"]
+      f.input :subcategory, as: :select, :collection => ["Design", "Fashion & Beauty", "Food", "Literature", "Performing Arts", "Visual Arts","Business News", "Careers", "Investing", "Management & Marketing", "Shopping","Education", "Education Technology", "Higher Education", "K-12", "Language Courses", "Training","Automotive", "Aviation", "Hobbies", "Other Games", "Video Games","Local", "National", "Non-Profit", "Regional","Alternative Health", "Fitness & Nutrition", "Self-Help", "Sexuality","Buddhism", "Christianity", "Hinduism", "Islam", "Judaism", "Other", "Spirituality","Medicine", "Natural Sciences", "Social Sciences","History", "Personal Journals", "Philosophy", "Places & Travel","Amateur", "College & High School", "Outdoor", "Professional","Gadgets", "Tech News", "Podcasting", "Software How-To"]
       f.input :docs 
     end
 
