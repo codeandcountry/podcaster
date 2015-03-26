@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320025920) do
+ActiveRecord::Schema.define(version: 20150320174246) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20150320025920) do
     t.string   "last_sign_in_ip",        limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role",                   limit: 255
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(version: 20150320025920) do
     t.string   "image_height",    limit: 255
     t.string   "image_link",      limit: 255
     t.boolean  "is_explicit",     limit: 1
-    t.string   "categories",      limit: 255
+    t.string   "category",        limit: 255
     t.boolean  "uses_podtrac",    limit: 1
     t.string   "ftp_folder_path", limit: 255
     t.string   "ftp_folder_url",  limit: 255
