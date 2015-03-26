@@ -100,12 +100,13 @@ ActiveRecord::Schema.define(version: 20150320174246) do
     t.string   "image_height",    limit: 255
     t.string   "image_link",      limit: 255
     t.boolean  "is_explicit",     limit: 1
-    t.string   "categories",      limit: 255
+    t.string   "category",        limit: 255
     t.boolean  "uses_podtrac",    limit: 1
     t.string   "ftp_folder_path", limit: 255
     t.string   "ftp_folder_url",  limit: 255
     t.string   "managing_editor", limit: 255
     t.string   "web_master",      limit: 255
+    t.string   "subcategory",     limit: 255
   end
 
   add_index "feeds", ["slug"], name: "index_feeds_on_slug", unique: true, using: :btree

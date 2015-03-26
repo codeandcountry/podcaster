@@ -47,9 +47,12 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
 
     xml.itunes :explicit, @feed.is_explicit
 
-    #todo
-    @feed.categories.split(/, ?/).each do |category|
-      xml.itunes :category, :text=>category
+    unless @feed.subcategory == 'None'
+      xml.itunes :category, :text => @feed.category do
+        xml.itunes :category, :text => @feed.subcategory
+      end
+    else
+      xml.itunes :category, :text => @feed.category
     end
 
     #items!
