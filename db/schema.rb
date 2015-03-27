@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320174246) do
+ActiveRecord::Schema.define(version: 20150327030811) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150320174246) do
     t.string   "image",            limit: 255
     t.string   "order",            limit: 255
     t.string   "comments_url",     limit: 255
+    t.boolean  "is_published",     limit: 1
   end
 
   add_index "episodes", ["feed_id"], name: "index_episodes_on_feed_id", using: :btree
