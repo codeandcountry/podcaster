@@ -24,7 +24,7 @@ class Episode < ActiveRecord::Base
   }
 
   validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", 'audio/mp3', 'application/x-mp3'] } 
-  after_post_process :read_id3
+  after_post_process :post_process
 
   def url
     if feed
@@ -66,6 +66,15 @@ class Episode < ActiveRecord::Base
 
 
   protected
+    def post_process
+      read_id3
+      generate_guid
+    end
+
+    def generate_guid
+      self.guid = self.guid || SecureRandom.uuid
+    end
+
     def read_id3
       Mp3Info.open(mp3.queued_for_write[:original].path) do |mp3info|
 
