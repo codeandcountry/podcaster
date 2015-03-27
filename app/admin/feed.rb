@@ -47,7 +47,7 @@ ActiveAdmin.register Feed do
     end
 
     f.inputs "Configuration" do
-      f.input :uses_podtrac 
+      f.input :uses_podtrac, :as => :toggle
       f.input :ftp_folder_path 
       f.input :ftp_folder_url 
       f.input :skip_days
