@@ -1,6 +1,6 @@
 ActiveAdmin.register Episode do
 
-  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :guid, :is_published, :published, :published_date, :published_time_hour, :published_time_minute, :keywords, :feed_id, :categories, :mp3, :image, :order, :comments_url
+  permit_params :title, :subtitle, :summary, :url, :length, :author, :link, :is_published, :published, :published_date, :published_time_hour, :published_time_minute, :keywords, :feed_id, :categories, :mp3, :image, :order, :comments_url
 
   index do
     id_column
@@ -27,7 +27,6 @@ ActiveAdmin.register Episode do
         f.input :summary 
         f.input :is_published, :as => :toggle
         f.input :published, :as => :just_datetime_picker
-        f.input :guid
         f.input :length
       end
 
