@@ -1,0 +1,14 @@
+body.edit{
+
+  :root label.toggle{
+    width: 100%;
+    position: relative;
+    padding-bottom: 25px;
+  }
+
+  :root input[type="checkbox"].ios-switch + div {
+    position: absolute;
+    left: 19%;
+  }
+
+}

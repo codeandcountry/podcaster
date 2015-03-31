@@ -3,7 +3,13 @@
  * by Lea Verou http://lea.verou.me
  */
 
-:root input[type="checkbox"] { /* :root here acting as a filter for older browsers */
+:root label.toggle{
+  width: 100%;
+  position: relative;
+  padding-bottom: 25px;
+}
+
+:root input[type="checkbox"].ios-switch { /* :root here acting as a filter for older browsers */
   position: absolute;
   opacity: 0;
 }
@@ -28,6 +34,9 @@
   box-shadow: 0 .1em .1em rgba(0,0,0,.2) inset,
               0 .45em 0 .1em rgba(0,0,0,.05) inset;
   font-size: 150%; /* change this and see how they adjust! */
+
+  position: absolute;
+  left: 19%;
 }
 
 :root input[type="checkbox"].ios-switch:checked + div {

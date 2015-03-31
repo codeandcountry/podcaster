@@ -22,4 +22,11 @@ class ToggleInput < Formtastic::Inputs::BooleanInput
   def toggle_html
     template.check_box_tag("#{object_name}[#{method}]", checked_value, checked?, class: 'ios-switch')
   end
+
+  def label_html_options
+    {
+      :for => input_html_options[:id],
+      :class => super[:class] - ['label'] + ['toggle'] # remove 'label' class, add toggle
+    }
+  end
 end
