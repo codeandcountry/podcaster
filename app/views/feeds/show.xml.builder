@@ -25,7 +25,7 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
       xml.itunes :email, @feed.owner_email
     end
 
-    xml.lastBuildDate @feed.last_build_date
+    xml.lastBuildDate Time.now
     xml.pubDate @feed.published_date
     xml.ttl @feed.ttl
     xml.skipDays do
@@ -79,8 +79,6 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
         end
 
         xml.pubDate episode.published
-
-        xml.itunes :keywords, episode.keywords
       end
     end
 
