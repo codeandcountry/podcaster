@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327030811) do
+ActiveRecord::Schema.define(version: 20150331021452) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace",     limit: 255
@@ -57,7 +57,6 @@ ActiveRecord::Schema.define(version: 20150327030811) do
     t.string   "link",             limit: 255
     t.string   "guid",             limit: 255
     t.datetime "published"
-    t.string   "keywords",         limit: 255
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.integer  "feed_id",          limit: 4
@@ -88,7 +87,6 @@ ActiveRecord::Schema.define(version: 20150327030811) do
     t.string   "copyright",       limit: 255
     t.string   "owner_name",      limit: 255
     t.string   "owner_email",     limit: 255
-    t.datetime "last_build_date"
     t.datetime "published_date"
     t.string   "ttl",             limit: 255
     t.string   "skip_days",       limit: 255

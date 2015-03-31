@@ -1,6 +1,6 @@
 ActiveAdmin.register Feed do
 
-  permit_params :title, :description, :slug, :atom_link, :link, :subtitle, :summary, :language, :copyright, :owner_name, :owner_email, :last_build_date, :published_date, :ttl, :skip_days, :generator, :docs, :author, :image_url, :image_title, :image_width, :image_height, :image_link, :is_explicit, :category, :uses_podtrac, :ftp_folder_path, :ftp_folder_url, :managing_editor, :web_master, :subcategory
+  permit_params :title, :description, :slug, :atom_link, :link, :subtitle, :summary, :language, :copyright, :owner_name, :owner_email, :published_date, :ttl, :skip_days, :generator, :docs, :author, :image_url, :image_title, :image_width, :image_height, :image_link, :is_explicit, :category, :uses_podtrac, :ftp_folder_path, :ftp_folder_url, :managing_editor, :web_master, :subcategory
 
   index do
     id_column
@@ -21,7 +21,6 @@ ActiveAdmin.register Feed do
       f.input :atom_link 
       f.input :link 
       
-      f.input :last_build_date 
       f.input :published_date 
 
       f.input :author 
