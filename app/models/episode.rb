@@ -43,7 +43,13 @@ class Episode < ActiveRecord::Base
 
   validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", 'audio/mp3', 'application/x-mp3'] } 
   validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/png"] } 
-  after_post_process :post_process
+  after_mp3_post_process :post_process
+  before_image_post_process :random_image_filename
+
+  def random_image_filename
+    extension = self.image.content_type.split("/").last
+    self.image.instance_write(:file_name, "#{SecureRandom.hex(16)}.#{extension}")
+  end
 
   def url
     if feed
@@ -56,7 +62,7 @@ class Episode < ActiveRecord::Base
   end
 
   def image_url
-    url = remote_image_url == "" ? "#{feed.ftp_folder_url}#{image.path}" : remote_image_url
+    url = remote_image_url ? remote_image_url : "#{feed.ftp_folder_url}#{image.path}"
     url_with_protocol(url)
   end
 
@@ -104,7 +110,9 @@ class Episode < ActiveRecord::Base
         self.length = self.length || mp3info.tag2.TLEN
         self.summary = self.summary || mp3info.tag2.COMM
 
-        #TODO image = mp3info.tag2.APIC ftp?
+        if mp3info.tag2.pictures.first
+          self.image = self.image || StringIO.new(mp3info.tag2.pictures.first.last)
+        end
 
         if feed_id
           feed = Feed.find(feed_id)

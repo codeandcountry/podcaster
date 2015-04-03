@@ -31,7 +31,7 @@ ActiveAdmin.register Episode do
       end
 
       f.inputs "Image" do
-        f.input :image, :as => :file
+        f.input :image, :as => :file, :hint => image_tag(f.object.image_url) 
         f.input :remote_image_url
       end
 
