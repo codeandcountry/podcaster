@@ -65,7 +65,7 @@ xml.rss "xmlns:atom"=>"http://www.w3.org/2005/Atom", "xmlns:itunes"=>"http://www
         end
         xml.enclosure :length=>episode.length, :type=>"audio/mpeg", :url=>episode.url
 
-        xml.itunes :image, episode.image
+        xml.itunes :image, episode.image_url
         xml.itunes :order, episode.order
         xml.comments episode.comments_url
         xml.source feed_url(:slug => @feed.slug, :format => 'xml')

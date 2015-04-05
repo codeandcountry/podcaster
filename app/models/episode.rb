@@ -23,22 +23,47 @@ class Episode < ActiveRecord::Base
     ]
   }
 
+  has_attached_file :image, {
+    # Choose the FTP storage backend
+    :storage => :ftp,
+
+    :path => lambda { |attachment| attachment.instance.ftp_path },
+    :url => lambda { |attachment| attachment.instance.ftp_url },
+
+    # The list of FTP servers to use
+    :ftp_servers => [
+      {
+        :host     => ENV['FTP_HOST'],
+        :user     => ENV['FTP_USER'],
+        :password => ENV['FTP_PASSWORD'],
+        :passive  => true
+      }
+    ]
+  }
+
   validates_attachment :mp3, content_type: { content_type: ["audio/mpeg3", "audio/x-mpeg-3", 'audio/mp3', 'application/x-mp3'] } 
-  after_post_process :post_process
+  validates_attachment :image, content_type: { content_type: ["image/jpeg", "image/png"] } 
+  after_mp3_post_process :post_process
+  before_image_post_process :random_image_filename
+
+  def random_image_filename
+    extension = self.image.content_type.split("/").last
+    self.image.instance_write(:file_name, "#{SecureRandom.hex(16)}.#{extension}")
+  end
 
   def url
     if feed
       if feed.uses_podtrac
-        "http://www.podtrac.com/pts/redirect.mp3/"+file_url
+        "http://www.podtrac.com/pts/redirect.mp3/"+mp3_file_url
       else
-        furl = file_url
-        if furl[/\Ahttp:\/\//] || furl[/\Ahttps:\/\//]
-          furl
-        else
-          "http://#{furl}"
-        end
+        url_with_protocol(mp3_file_url)
       end
     end
+  end
+
+  def image_url
+    url = remote_image_url ? remote_image_url : "#{feed.ftp_folder_url}#{image.path}"
+    url_with_protocol(url)
   end
 
   def ftp_path
@@ -67,7 +92,9 @@ class Episode < ActiveRecord::Base
 
   protected
     def post_process
-      read_id3
+      if mp3.queued_for_write.length != 0
+        read_id3
+      end
       generate_guid
     end
 
@@ -83,7 +110,9 @@ class Episode < ActiveRecord::Base
         self.length = self.length || mp3info.tag2.TLEN
         self.summary = self.summary || mp3info.tag2.COMM
 
-        #TODO image = mp3info.tag2.APIC ftp?
+        if mp3info.tag2.pictures.first && !self.image.size
+          self.image = StringIO.new(mp3info.tag2.pictures.first.last)
+        end
 
         if feed_id
           feed = Feed.find(feed_id)
@@ -94,11 +123,19 @@ class Episode < ActiveRecord::Base
       end
     end
 
-    def file_url
+    def mp3_file_url
       if mp3_file_name
         "#{feed.ftp_folder_url}#{mp3.path}"
       else
         read_attribute(url)
+      end
+    end
+
+    def url_with_protocol(url)
+      if url[/\Ahttp:\/\//] || url[/\Ahttps:\/\//]
+        url
+      else
+        "http://#{url}"
       end
     end
 
