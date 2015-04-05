@@ -110,8 +110,8 @@ class Episode < ActiveRecord::Base
         self.length = self.length || mp3info.tag2.TLEN
         self.summary = self.summary || mp3info.tag2.COMM
 
-        if mp3info.tag2.pictures.first
-          self.image = self.image || StringIO.new(mp3info.tag2.pictures.first.last)
+        if mp3info.tag2.pictures.first && !self.image.size
+          self.image = StringIO.new(mp3info.tag2.pictures.first.last)
         end
 
         if feed_id
